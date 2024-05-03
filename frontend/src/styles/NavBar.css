@@ -1,0 +1,101 @@
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  padding: 5px;
+  cursor: pointer;
+  
+}
+
+.menu-toggle {
+  display: none; /* Cachez le bouton de menu par défaut */
+}
+
+
+@media only screen and (max-width: 768px) {
+  .nav-menu {
+    display: none; /* Cachez les données de la barre de navigation sur les petits écrans */
+  }
+
+  .menu-toggle {
+    display: block; /* Affichez le bouton de menu sur les petits écrans */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.3em;
+  }
+
+  .menu-toggle:focus {
+    outline: none;
+  }
+  .nav-menu.open {
+    display: block;
+    position: absolute;
+    top: 55px; /* Ajustez la position verticale du menu déroulant selon votre mise en page */
+    left: 0;
+    background: linear-gradient(to bottom, rgba(196, 2, 212, 0.7), rgba(31, 223, 217, 0.7));
+    width: 30%;
+    
+  }
+  
+  .nav-menu.open li {
+    padding: 10px;
+    text-align: left;
+    margin-left: 10px;
+  }
+  nav {
+    background: linear-gradient(to bottom right, rgba(196, 2, 212, 0.67), rgba(31, 223, 217, 0.67));
+    color: #ffffff;
+    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+    
+    
+}
+@media only screen and (min-width: 768px) {
+ 
+
+  nav ul {
+    display: flex; /* Utilisez flexbox pour aligner horizontalement les éléments */
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+
+  }
+
+  .li-navbar_homemed {
+    margin-right:0px;
+    font-size: 16px;
+    padding: 0 10px; /* Ajoutez un espacement horizontal entre les éléments */
+    cursor: pointer;
+    display: flex;
+
+
+    
+  }
+  .nav_homemed {
+    background: linear-gradient(to bottom right, rgba(196, 2, 212, 0.6), rgba(31, 223, 217, 0.6));
+    color: #ffffff;
+    text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    display: flex;
+    justify-content: end;
+
+   
+  }
+  .aligne_navbar_homemed{
+    padding:10px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+}

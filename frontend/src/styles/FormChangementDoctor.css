@@ -1,0 +1,100 @@
+/* Styles pour le composant ChangeDoctorForm */
+
+/* Formulaire */
+form {
+    margin-bottom: 20px;
+  }
+  
+ .input_formchangermed {
+
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top:50px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+  }
+  
+ .input_formchangermed:focus {
+    border-color: #007bff;
+    background-color: #0090fe0c;
+  }
+  
+.title_formchangermed{
+    font-size: 34px;
+    padding: 10px;
+margin-top: 100px;
+    margin-left: 20px;
+    color: #47194E;
+}
+
+  .button_formchangermed {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #dc10dfcb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button_formchangermed:hover {
+    background-color: #cf16cf;
+    transform: scale(1.05); /* L'agrandit légèrement au survol */
+
+  }
+  
+  /* Tableau */
+  .table_formchangermed {
+    margin-left: 50px;
+    background-color: #39b2c414;
+    color: #063e5b;
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table_formchangermed th, .table_formchangermed td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  
+ .table_formchangermed th {
+    text-align: center;
+    background-color: #3fd7d292;
+    color: #063e5b;
+  }
+  
+  
+  /* Image */
+  .changermed_formchangermed {
+   width: 220px;
+   float: right;
+   margin-right: 12%;
+   margin-bottom: 5px;
+  }
+  
+  .changermed_formchangermed:hover {
+    transform: scale(1.05); /* L'agrandit légèrement au survol */
+  }
+   /* Lien de retour */
+   .back-link_formchangermed {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 10px 20px;
+    background-color: #d12dc9 ;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-link_formchangermed:hover {
+    background-color: #519fc1f0;
+  }

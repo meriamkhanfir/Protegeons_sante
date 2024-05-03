@@ -1,0 +1,144 @@
+.rotating-rectangle-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.rectangle {
+  position: absolute;
+  background-color: #d9d9d90e; /* Couleur de fond */
+  width: 250%; /* Taille du rectangle */
+  height: 250%; /* Taille du rectangle */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 10s linear infinite;
+}
+
+.logo-background {
+  position: absolute;
+  top: -100px; /* Position initiale en dehors de l'écran */
+  left: 50%;
+  transform: translateX(-50%);
+  animation: fallDown 4s ease forwards, moveUp 5s ease forwards 4s; /* Animation de chute avec un délai de 3s */
+}
+
+.med-background {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  margin-top: 150px;
+  transform: translate(-50%, -50%) scale(0.1); /* Initiallement très petit */
+
+  top: 280px; /* Position initiale en dehors de l'écran */
+  left: 68%;
+  transform: translateX(30%);
+  opacity: 0; /* Initiallement invisible */
+  animation: zoomIn 0.6s ease forwards ;
+  /*animation: moveUp 5s ease forwards ; /* Animation de déplacement vers le haut avec un délai de 3s */
+}
+.med-background2 {
+  position: relative;
+  width: 200px;
+  height: auto;
+  margin-top: 108px;
+  top: -200px; /* Position initiale en dehors de l'écran */
+  left: 20.2%;
+  transform: translateX(30%);
+  opacity: 0; /* Initiallement invisible */
+  animation: moveUp 5s ease forwards ; /* Animation de déplacement vers le haut avec un délai de 3s */
+}
+
+
+.zoom-button {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1); /* Initiallement très petit */
+  padding: 13px 25px;
+  font-size: 16.5px;
+  background-color: #bb18cabf;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  animation: zoomIn 0.5s ease forwards; /* Animation de zoom in */
+  opacity: 0; /* Initiallement invisible */
+}
+
+
+
+.circle {
+  position: absolute;
+  width: 40%; /* Taille du cercle relative au rectangle */
+  height: 60%; /* Taille du cercle relative au rectangle */
+  border-radius: 50%;
+  filter: blur(180px);
+  animation: animateGradient 5s linear infinite alternate; /* Animation du dégradé */
+}
+
+.top-left {
+  top: 40px;
+  left: 200px;
+  background-color: rgba(194, 2, 212, 0.459); /* Couleur du cercle en haut à gauche */
+}
+
+.bottom-right {
+  bottom: 40px;
+  right: 200px;
+  background-color: rgba(31, 223, 217, 0.605); /* Couleur du cercle en bas à droite */
+}
+
+/* Animation de rotation */
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Animation de chute */
+@keyframes fallDown {
+  0% {
+    top: -200px; /* Position initiale en dehors de l'écran */
+    opacity: 0.8;
+  }
+  100% {
+    top: calc(70% - 100px); /* Position finale au centre de la page */
+    opacity: 1;
+  }
+}
+
+/* Animation de déplacement vers le haut */
+@keyframes moveUp {
+  0% {
+    top: calc(70% - 100px); /* Position initiale au centre de la page */
+    opacity: 1; /* Initiallement visible */
+  }
+  100% {
+    top: 0%; /* Position finale au centre de la page */
+    opacity: 1; /* Devenir visible */
+  }
+}
+
+/* Animation du dégradé */
+@keyframes animateGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.1); /* Initiallement très petit */
+    opacity: 0; /* Initiallement invisible */
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1); /* À la taille normale */
+    opacity: 1; /* Visible */
+  }
+}

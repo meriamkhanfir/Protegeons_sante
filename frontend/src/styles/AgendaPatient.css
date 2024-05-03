@@ -1,0 +1,81 @@
+/* Styles pour le composant Agenda */
+
+/* Conteneur principal */
+.slideshow_agendapatient{
+    width: calc(40% - 50px); /* Déduction de la marge pour maintenir le total à 100% */
+    float: right; /* Aligner à gauche */
+    margin-right: 0px; 
+    margin-top: 25px;
+ 
+}
+.agenda-container_agendapatient {
+    position: fixed; /* position fixe */
+    top: 5px; /* collé en haut */
+    left: 5px; /* collé à gauche */
+    right: 5px; /* collé à droite */
+    bottom: 5px; /* collé en bas */
+    padding: 10px;
+    border: 1px solid #16c5e833;
+    border-radius: 8px;
+    background-color: #dfeef052;
+    overflow-y: auto; /* ajouter une barre de défilement verticale si nécessaire */
+    
+
+}
+
+
+  
+  /* Titre */
+ 
+  .agenda-title_agendapatient {
+    font-size: 34px;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+
+    margin-left: 100px;
+    color: #47194E;
+  }
+
+  
+  /* Tableau */
+  .agenda-table_agendapatient {
+    width: 100%;
+    border-collapse: collapse;
+    width: calc(60% - 20px); /* Déduction de la marge pour maintenir le total à 100% */
+    float: left; /* Aligner à gauche */
+    margin-left: 20px; 
+    margin-bottom: 20px;
+  }
+  
+  .agenda-table_agendapatient th,
+  .agenda-table_agendapatient td {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .agenda-table_agendapatient th {
+    background-color: #39b2c492;
+    color: #063e5b;
+  }
+  
+  .agenda-table_agendapatient td {
+    border-top: 1px solid #dddddd;
+  }
+  
+  /* Lien de retour */
+  .back-link_agendapatient {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 10px 20px;
+    background-color: #d53bdd ;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-link_agendapatient:hover {
+    background-color: #21b7f7f0;
+  }
+  

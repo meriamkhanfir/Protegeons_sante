@@ -1,0 +1,31 @@
+/* Styles pour le diaporama */
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .slide {
+    display: none;
+    height: auto;
+  }
+  .slide {
+
+    width: 350px;
+    height: 520px;
+}
+  
+  .slide.active {
+    display: block;
+    animation: fade 1s ease-in-out;
+  }
+  
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

@@ -1,0 +1,514 @@
+/* Reset des styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+
+  padding: 20px 0px;
+  justify-content: flex-end; /* Aligner les éléments à droite */
+
+}
+
+nav {
+  background: linear-gradient(to bottom left    , rgba(196, 2, 212, 0.5), rgba(31, 223, 217, 0.5));
+  font-size: 19px;
+  color: #ffffff;
+  text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+ 
+}
+
+
+.navbar a {
+  position: relative;
+  right: 40px;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+
+
+.logo_accueil {
+  width: 250px;
+  height: auto;
+  margin-top:-100px;
+  margin-left: -50px;
+
+
+}
+.accueil1{
+  margin-top: 50px;
+  width: 350px;
+  height: 200px;
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+}
+.accueil_question{
+  height: auto;
+  display: flex;
+  float: left;
+  width: calc(40% - 0px);
+
+  
+
+}
+.titre{
+  color: rgba(31, 223, 217);
+  padding-bottom: 15px;
+
+}
+.soustitre{
+  color: rgb(7, 25, 92);
+  font-size: 17px;
+  padding: 10px;
+
+
+}
+
+.content{
+  background-color: #fff;
+  margin-top: 30px;
+}
+
+
+
+.buttons button {
+  padding: 12px 25px;
+  top: 10px;
+  background-color: rgba(196, 2, 212, 0.8);
+  text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.5);
+  right: -150px;
+  margin-bottom: 50px;
+  margin-left: 70px;
+  margin-right: -50px;
+
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+  background: linear-gradient(to bottom left, rgba(196, 2, 212, 1), rgba(31, 223, 217, 1));
+
+}
+
+.right_accueil {
+
+  float: right; /* Pour que le contenu flotte vers la droite */
+  margin: 20px;
+}
+.left_accueil {
+  position: relative;
+  width: 65% ;
+  padding: 10px;
+  margin: 20px;
+}
+.left_accueil p{
+  background-color: #e1e1e17a;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 18px;
+
+
+
+}
+.rest_accueil {
+  float: right; /* Pour que le contenu flotte vers la droite */
+  margin: 20px;
+
+}
+.rest_accueil p{
+
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 18px;
+  margin-left: 20px;
+
+
+}
+.rest_accueil .titre{
+  color: rgb(162, 16, 206);
+  padding-bottom: 15px;
+
+}
+
+.img_patient_accueil {
+  display: flex;
+  align-items: center; /* Aligner les éléments verticalement */
+}
+
+
+.register-modal,
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  
+}
+
+.register-modal.open,
+.login-modal.open {
+  opacity: 1;
+  pointer-events: all;
+  
+}
+
+.register-modal-content,
+.login-modal-content {
+  background-color: #eae9e9;
+  border-radius: 5px;
+  padding: 50px;
+  max-width: 700px;
+  text-align: center;
+  color: rgb(131, 8, 123);
+  
+
+}
+.login-modal-content h1{
+  font-size: 32px;
+  font-weight: bold;
+  color: #a816a3;
+
+}
+.reponse_med button{
+
+    background-color: #fff;
+    margin-top: 100px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin-right: 50px;
+  margin-left: -30px;
+
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+ /* Pour le premier bouton dans .reponse_med */
+.reponse_med:hover button:first-child {
+  background-color: #4caf50; /* Vert */
+  color: #fff;
+}
+
+/* Pour le dernier bouton dans .reponse_med */
+.reponse_med:hover button:last-child {
+  background-color: #e53935; /* Rouge */
+  color: #fff;
+}
+
+
+
+.close-modal-button {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  cursor: pointer;
+  padding: 1px 8px;
+  border-radius: 6px 10px;
+  font-size: 20px;
+  padding:10px;
+  outline: none;
+  border-color: #e91111;
+  background: #ff0000c6;
+  border: 1px solid #cccccc80;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  color:rgb(255, 255, 255);
+  font-weight: 600;
+  cursor: pointer;
+}
+.modal-content-button  button :hover {
+  background-color: rgba(242, 27, 27, 0.856);
+}
+.doctor_accueil{
+  width: 230px;
+  height: 195px;
+
+
+}
+.loginpatient_accueil{
+  width: 180px;
+  height: auto;
+
+}
+.patient1_accueil {
+  width: 200px;
+  height: 150px;
+  margin-right:20px;
+}
+.patient2_accueil {
+  width: 200px;
+  height: 150px;
+
+}
+.right_accueil_patient  {
+  width: calc(50% - 10px);
+  float: right;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b848e;
+
+}
+.left_accueil_doctor {
+  width: calc(40% - 10px);
+  float: left;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b848e;
+
+}
+footer {
+  position: relative;
+  width: 100%; /* Assurer que le footer occupe toute la largeur */
+  background-color: #646363;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+
+}
+.footer_accueil p {
+  font-size: 17px;
+  margin: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+
+
+}
+.email_accueil{
+  color: #11badc;
+}
+
+
+.diabeteinfo_accueil{
+  width: 65% ;
+
+}
+
+.diabeteinfodetail_accueil h2{
+  color:  rgb(2, 144, 210);
+}
+.diabeteinfodetail_accueil p{
+  
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 18px;
+  margin-left: 20px;
+}
+.diabete_accueil{
+  margin-top: 50px;
+  width: 500px;
+  height: 350px;
+border-radius: 50px;
+}
+.diabete1_accueil{
+  margin-top: 50px;
+  width: 500px;
+border-radius: 50px;
+}
+.right_accueil1 {
+
+  float: right; /* Pour que le contenu flotte vers la droite */
+  margin-right: 80px;
+}
+.left_accueil1 {
+  position: relative;
+
+  width: 70% ;
+  padding: 50px;
+}
+.left_accueil1 p{
+  background-color: #f846dd2d;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 19px;
+  padding: 30px;
+  color: #9a037c;
+
+
+}
+.right_accueil2 {
+
+  float: right; /* Pour que le contenu flotte vers la droite */
+  margin-right: 80px;
+  margin-top: 20px;
+  margin-bottom: 200px;
+
+}
+.left_accueil2 {
+  margin-top: 20px;
+  position: relative;
+  width: 70% ;
+  padding: 50px;
+  margin-bottom: 200px;
+
+}
+.left_accueil2 p{
+  
+  background-color: #3744fc24;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 19px;
+  padding: 30px;
+  color: #03609a;
+    margin-top: 20px;
+
+
+
+}
+.diabete_info_accueil{
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 22px;
+  margin-right: 20px;
+  margin-left: 30px;
+float:left;
+margin-bottom: 100px;
+
+}
+.diabete_info_accueil h3{
+
+  text-align: center;
+  color: #de0bd7;
+  font-size: 36px;
+
+}
+.diabete_info{
+  width: 300px;
+}
+
+
+
+.left_accueil3 {
+
+  margin-right: 80px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+.right_accueil3 {
+  float: right;
+  padding: 50px;
+ margin-right: -400px;
+margin-top: -550px;
+width: 70%;
+margin-bottom: 20px;
+
+}
+.right_accueil3 p{
+  
+  background-color: #3744fc24;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 19px;
+  padding: 30px;
+  color: #03609a;
+  float: right;
+  padding: 50px;
+
+margin-bottom: 20px;
+  
+
+
+}
+.diabete_accueil4{
+  width: 300px;
+  margin-right: -230px;
+  margin-bottom: 20px;
+  margin-top: 200px;
+
+
+}
+.right_accueil4 {
+
+  float: right; /* Pour que le contenu flotte vers la droite */
+  margin-top: 50px;
+  margin-right: -180px;
+  margin-bottom: 20px;
+
+
+}
+.left_accueil4 {
+  margin-top: 200px;
+  width: 100% ;
+  padding: 50px;
+  margin-left: -50px;
+}
+.left_accueil4 p{
+  
+  background-color: #3744fc24;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 19px;
+  padding: 30px;
+  color: #03609a;
+  margin-bottom: 20px;
+
+
+
+}
+
+.right_accueil5 {
+  float: right;
+  padding: 50px;
+margin-right: -60px;
+margin-top: 20px;
+width: 100%;
+margin-bottom: 20px;
+
+}
+.right_accueil5 p{
+  
+  background-color: #3744fc24;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 19px;
+  padding: 30px;
+  color: #03609a;
+  margin-bottom: 20px;
+
+
+
+}
+
+.left_accueil6 {
+  margin-top: 20px;
+  position: relative;
+  width: 100% ;
+  padding: 50px;
+  margin-bottom: 20px;
+margin-left: 150px;
+}
+.left_accueil6 p{
+  
+  background-color: #3744fc24;
+  border-radius: 10px;
+  line-height: 1.5; /* Ajustez cette valeur selon vos besoins */
+  font-size: 19px;
+  padding: 30px;
+  color: #03609a;
+
+
+}
+.diabeteinfodetail_accueil{
+margin-top:  0px;
+}

@@ -1,0 +1,104 @@
+/* Styles pour le composant Consultation */
+
+/* Conteneur principal */
+.consultation-container_consultation {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.consultationtitle_consultation {
+    font-size: 34px;
+    padding: 10px;
+    margin-top: 70px;
+    margin-left: 100px;
+    color: #47194E;
+}
+
+.consultationimage_consultation {
+    width: 300px;
+    float: right;
+    margin-right: 13%;
+    margin-bottom: 20px;
+}
+
+/* Informations de consultation */
+.consultation-info_consultation {
+    font-size: 17px;
+    color: #163a4d;
+    margin-bottom: 10px;
+    padding: 2px;
+    margin-left: 50px;
+}
+
+/* Formulaire */
+.consultation-form_consultation {
+    margin-top: 10px;
+padding: 10px;
+    margin-bottom: 10px;
+}
+
+.label_consultation {
+    font-size: 22px;
+    font-weight: bold;
+    color: #036ef0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.textarea_consultation {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.input_consultation {
+    margin-bottom: 10px;
+}
+
+/* Boutons */
+.button_consultation, .delete-button_consultation , .consultation-button_consultation{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  background-color: #3bd3f527;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-right: 0px;
+    margin-left: 20px;
+    border-radius: 5px;
+
+}
+
+.button_consultation:hover, .delete-button_consultation:hover , .consultation-button_consultation:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Section PDF */
+.pdf-section_consultation {
+    margin-top: 20px;
+}
+
+.embed-pdf_consultation {
+    width: 100%;
+    height: 500px;
+}
+
+/* Messages */
+.message_consultation {
+    font-size: 16px;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+/* Bouton supprimer */
+
