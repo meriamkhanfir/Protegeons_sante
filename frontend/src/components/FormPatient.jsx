@@ -1,15 +1,18 @@
 import "../styles/FormPatient.css";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import registpatientImage from "../images/editpatient.png";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import NavBar from '../pages/NavBar';
 
 
 const FormPatient = () => {
+  const { state } = useLocation();
+  const idmedId = state ? state.idmed_id : localStorage.getItem("idmed_id");
+  const navigate = useNavigate();
   const { medecinId } = useParams();
   const [patient, setPatient] = useState({
     nom: '',
@@ -28,7 +31,6 @@ const FormPatient = () => {
  // const [idmed, setIdMedecin] = useState(null);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const handlePatientInputChange = (e) => {
@@ -82,9 +84,15 @@ const FormPatient = () => {
       setLoading(false);
     }
   };
-  
+  useEffect(() => {
+    if (idmedId) {
+      localStorage.setItem("idmed_id", idmedId);
+    }
+  }, [idmedId]);
   return (
     <div className="container_registpatient">
+       <NavBar/>
+
     <h1 className="title_patients_registpatient">Informations du patient</h1>
     <img src={registpatientImage} alt="registpatient" className="editpatient_registpatient" />
 
@@ -232,7 +240,7 @@ const FormPatient = () => {
         <button type="submit" className="confirm-button_registpatient">
           Confirmer
         </button>
-        <button type="button" className="cancel-button_registpatient">
+        <button onClick={() => navigate(`/Accueil/login/home_medecin/${idmedId}`)} type="button" className="cancel-button_registpatient">
           Annuler
         </button>
       </form>

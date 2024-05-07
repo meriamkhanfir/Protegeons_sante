@@ -30,13 +30,10 @@ nav li {
 .carnet-medical_carnetmedical {
     padding: 20px;
     margin-left: 10px;
-
-    color: #47194E;
+    color: #9d24ab;
 }
 .carnet-medical_carnetmedical h1 {
     font-size: 32px;
-
-    margin-top: 50px;
     margin-left: 30%;
 
 }
@@ -90,8 +87,8 @@ nav li {
     width: 300px;
     height: auto;
     position: absolute;
-    top: 70px; /* Peut être ajusté si nécessaire */
-    right: 27px; /* Positionne l'image sur le côté droit */
+    top: 150px; /* Peut être ajusté si nécessaire */
+    right: 35px; /* Positionne l'image sur le côté droit */
 }
 .infopers_carnetmedical  {
     width: 200px;
@@ -124,6 +121,8 @@ nav li {
     margin-top: 10px;
     padding: 1px;
     margin-left: 20px;
+    color: #2c0c5a;
+
 
 
 } 
@@ -146,4 +145,53 @@ nav li {
   
   .back-link_carnetmedical:hover {
     background-color: #21b7f7f0;
+  }
+  .bouton-modifier_carnetmedical{
+    background-color: #d53bdd;
+    border: none;
+    color: #fff;
+    margin-top: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 0.65rem 1.1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .label_carnetmedical {
+    display: block;
+    margin-top: 15px;
+    margin-left:1px;
+    font-size: 18px;
+    color: #2c0c5a;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+ .label_carnetmedical::after {
+    
+    content: '';
+    display: block;
+    width: 98%;
+    height: 0.75px;
+    background-color: #3385b591;
+    margin-top: 10px;
+    margin-left: 5px;
+  
+  }
+  
+ .label_carnetmedical:hover::after {
+
+    background-color: #fa20eff0;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+ .input_carnetmedical  {
+    font-size: 15px; /* Augmentez la taille de la police */
+background-color: #f7eff6;
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #cccccc80;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
   }

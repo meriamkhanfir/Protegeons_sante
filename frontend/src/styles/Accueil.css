@@ -256,10 +256,25 @@ nav {
   width: 200px;
   height: 150px;
   margin-right:20px;
+  margin-left: 70px;
 }
 .patient2_accueil {
   width: 200px;
   height: 150px;
+  margin-left:70px;
+
+
+}
+.patient3_accueil {
+  width: 200px;
+  height: 150px;
+  margin-left:70px;
+
+
+}
+.patient-info p{
+  font-size: 16px;
+  margin-left: 60px;
 
 }
 .right_accueil_patient  {

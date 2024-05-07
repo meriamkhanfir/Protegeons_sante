@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/login";
 import LoginPatient from "./pages/loginpatient";
+import ParentComponent from './components/ParentComponent'
 
 import Register from "./pages/Register";
 import HomeMedecin from "./pages/HomeMedecin";
@@ -16,7 +17,7 @@ import Consultation from "./components/Consultation";
 import RotatingCircle from "./pages/RotatingCircle"; 
 import Acceuil from "./pages/Accueil";
 import HomePatient from "./pages/HomePatient";
-
+import NavBar from "./pages/NavBar";
 import CarnetMedicalPat from "./components/CarnetMedicalpat";
 import ChangeDoctorForm from "./components/FormChangementDoctor";
 import DoctorChangeRequests from "./components/Requests";
@@ -33,6 +34,8 @@ axios.defaults.withCredentials = true;
 function App() {
   return (
     <BrowserRouter>
+
+
       <Routes>
         <Route path="/" element={<RotatingCircle />} />
         <Route
@@ -40,6 +43,7 @@ function App() {
           element={
             <ProtectedRoute>
               <HomeMedecin />
+
             </ProtectedRoute>
           }
         />

@@ -1,0 +1,32 @@
+.container_photoapp {
+   margin: 10px;
+   margin-left: 50px;
+   margin-right: 50px;
+   width: calc(80% - 10px); /* Déduction de la marge pour maintenir le total à 100% */
+   border: 1px solid #16c5e833;
+    border-radius: 8px;
+    background-color: #dfeef052;
+    overflow-y: auto; /* ajouter une barre de défilement verticale si nécessaire */
+   
+
+}
+
+.conseil_photoapp{
+    width: calc(45% - 10px); /* Déduction de la marge pour maintenir le total à 100% */
+    float: left; /* Aligner à gauche */
+    margin-left: 80px; 
+    margin-top: 50px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #05113a;
+
+}
+.img-photoapp{
+    width: calc(30% - 10px); /* Déduction de la marge pour maintenir le total à 100% */
+    float: right; /* Aligner à gauche */
+    margin-right: 40px; 
+    margin-top: 25px;
+    height: 300px;
+}

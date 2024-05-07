@@ -6,6 +6,7 @@ import infopers1 from '../images/infopers1.png';
 import carnet from '../images/carnet.png';
 import api from "../api";
 import TabWidget from '../pages/TabWidget';
+import NavBarPatient from "../pages/NavBarPatient";
 
 function CarnetMedicalpat() {
   const { patientId } = useParams();
@@ -38,6 +39,7 @@ function CarnetMedicalpat() {
 
   return (
     <div className="container_carnetmedical">
+      <NavBarPatient/>
       <div className="carnet-medical_carnetmedical">
         <img src={carnet} alt="carnet" className="carnet_carnetmedical" />
         <h1>Carnet Médical</h1>
@@ -74,7 +76,7 @@ function CarnetMedicalpat() {
                 <p>Ordonnance: {selectedConsultation.ordonnance}</p>
                 <p>Description: {selectedConsultation.description}</p>
                 <p>Bilan: {selectedConsultation.bilan}</p>
-                <p>Bilan PDF: <a href={selectedConsultation.bilan_pdf} target="_blank" rel="noopener noreferrer">Voir le PDF</a></p>
+                <p>Bilan PDF: {selectedConsultation.bilan_pdf ? <a href={`http://localhost:8000${selectedConsultation.bilan_pdf}`} target="_blank" rel="noopener noreferrer">Voir le PDF</a> : "Aucun fichier PDF disponible"}</p>
               </div>
             )}
           </div>

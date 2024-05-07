@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { differenceInYears } from 'date-fns'; // Import de la fonction differenceInYears depuis date-fns
+import '../styles/NavBar.css'
 import { useParams } from 'react-router-dom';
 import api from '../api';
-import '../styles/Patient.css';
+import '../styles/listePatient.css';
 import patientImage from "../images/patients.png";
 import consultImage from "../images/consult1.png";
 import supprimerImage from "../images/supprimer.png";
-import { useNavigate } from "react-router-dom";
 //import deleteIcon from "./deleteicon.png";
-
+import { useLocation, useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 function Listepatient() {
+  const { state } = useLocation();
+
+  const idmedId = state ? state.idmed_id : null;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    
+  }, [idmedId]);
+
+  
+  const handleLogout = () => {
+    localStorage.clear(); 
+    navigate("/Accueil/login"); 
+  };
   const [patientsData, setPatientsData] = useState([]);
   const [showPatients, setShowPatients] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const { medecinId } = useParams();
-  const navigate = useNavigate();
   const [sortBy, setSortBy] = useState("nom");
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,7 +95,7 @@ function Listepatient() {
       return 0;
     }
     if (sortBy === "age") {
-      return sortOrder === "asc" ? a.age - b.age : b.age - a.age;
+      return sortOrder === "asc" ? differenceInYears(new Date(), new Date(a.date_de_naissance)) - differenceInYears(new Date(), new Date(b.date_de_naissance)) : differenceInYears(new Date(), new Date(b.date_de_naissance)) - differenceInYears(new Date(), new Date(a.date_de_naissance));
     }
     return 0;
   });
@@ -95,38 +110,29 @@ function Listepatient() {
   };
 
   return (
-    <div className="container">
-       <nav>
-         <ul>
-          <li>Accueil</li>
-          <li>Patients</li>
-          <li>Consultations</li>
-          <li>Déconnexion</li>
-          </ul>
-        </nav>
-      <button className="list_patients_button" onClick={handleShowPatients}>
-        Liste des Patients
-      </button>
+    <div className="container_listepatient">
+ <NavBar/>
+      
       {showPatients && (
-        <div className="format">
-          <h1 className="title_patients">Liste des patients</h1>
-          <div className="right">
-            <img src={consultImage} alt="consult" className="consult" />
+        <div className="format_listepatient">
+          <h1 className="title_patients_listepatient">Liste des patients</h1>
+          <div className="right_listepatient">
+            <img src={consultImage} alt="consult" className="consult_listepatient" />
           </div>
-          <div className="left">
-            <img src={patientImage} alt="patient" className="patient" />
-            <div className="table-container">
-              <div className="search-container">
+          <div className="left_listepatient">
+            <img src={patientImage} alt="patient" className="patient_listepatient" />
+            <div className="table-container_listepatient">
+              <div className="search-container_listepatient">
                 <input
                   type="text"
                   placeholder="Rechercher"
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
                 />
-                <button className="clean-button" onClick={() => setSearchTerm("")}>
+                <button className="clean-button_listepatient" onClick={() => setSearchTerm("")}>
                   Nettoyer
                 </button>
-                <button className="ajout-button" onClick={() => navigate(`/Accueil/login/home_medecin/registerpatient/${medecinId}`)}>
+                <button className="ajout-button_listepatient" onClick={() => navigate(`/Accueil/login/home_medecin/registerpatient/${medecinId}`)}>
                   Ajouter un patient
                 </button>
               </div>
@@ -153,7 +159,7 @@ function Listepatient() {
                     <tr key={patient.id}>
                       <td>{patient.nom}</td>
                       <td>{patient.prenom}</td>
-                      <td>{patient.date_de_naissance}</td>
+                      <td>{differenceInYears(new Date(), new Date(patient.date_de_naissance))}</td>
                       <td>
                         <button onClick={() => navigate(`/Accueil/login/home_medecin/ListePatient/Info/${patient.id}`)}>Information</button>
                         <button onClick={() => confirmDeletion(patient.id)}>Supprimer</button>
@@ -167,8 +173,8 @@ function Listepatient() {
         </div>
       )}
       {showConfirmation && (
-        <div className="confirmation-modal">
-          <img src={supprimerImage} alt="supprimer" className="supprimer" />
+        <div className="confirmation-modal_listepatient">
+          <img src={supprimerImage} alt="supprimer" className="supprimer_listepatient" />
           <p>Êtes-vous sûr de vouloir supprimer ce patient ?</p>
           <button onClick={() =>  setPatientIdToDelete(null)}>Oui</button>
 
@@ -176,7 +182,7 @@ function Listepatient() {
         </div>
       )}
       {selectedPatient && (
-        <div className="right">
+        <div className="right_listepatient">
           <h2>Informations du Patient</h2>
           <p>Nom: {selectedPatient.nom}</p>
           <p>Prénom: {selectedPatient.prenom}</p>

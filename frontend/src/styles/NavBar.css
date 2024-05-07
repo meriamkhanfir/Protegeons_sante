@@ -49,11 +49,11 @@
     text-align: left;
     margin-left: 10px;
   }
-  nav {
+  .nav_homemed {
     background: linear-gradient(to bottom right, rgba(196, 2, 212, 0.67), rgba(31, 223, 217, 0.67));
     color: #ffffff;
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.3);
-    padding: 15px;
+    padding: 9px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,7 +64,7 @@
 @media only screen and (min-width: 768px) {
  
 
-  nav ul {
+  .nav_homemed ul {
     display: flex; /* Utilisez flexbox pour aligner horizontalement les éléments */
     list-style: none;
     margin: 0;
@@ -86,7 +86,7 @@
     background: linear-gradient(to bottom right, rgba(196, 2, 212, 0.6), rgba(31, 223, 217, 0.6));
     color: #ffffff;
     text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.5);
-    padding: 5px;
+    padding: auto;
     display: flex;
     justify-content: end;
 

@@ -6,7 +6,7 @@ import logoImage from '../images/logo.png';
 import accueil1Image from '../images/accueil1.jpg';
 import accueil_questionImage from '../images/accueil_question.png';
 import loginpatientImage from '../images/loginpatient.png';
-import doctorImage from '../images/doctor.png';
+import doctorImage from '../images/doctor copy.png';
 import patient1Image from '../images/patient1.png';
 import patient2Image from '../images/patient2.png';
 import diabete_accueilImage from '../images/diabete_accueil.png';
@@ -14,9 +14,9 @@ import diabete_infoImage from '../images/diabete_info.png';
 import diabete_accueil3Image from '../images/diabete_accueil3.png';
 import diabetetype1Image from '../images/diabetetype1.png';
 import diabetetype2Image from '../images/diabetetype2.png';
-
-
-
+import recettesImage from '../images/recettes.png';
+import rv_medImage from '../images/rv_med.png'
+import listepatientImage from '../images/Listedespatients.png'
 
 
 
@@ -106,11 +106,15 @@ const Accueil = () => {
  <div className='img_patient_accueil'>
   <div className="patient-info">
     <img src={patient1Image} alt="patient" className='patient1_accueil' />
-    <p><br/><br/>une Agenda pour gérer les rendez-vous</p>
+    <p><br/><br/>une Agenda pour gérer les <br/>rendez-vous</p>
   </div>
   <div className="patient-info">
     <img src={patient2Image} alt="patient" className='patient2_accueil' />
-    <p><br/><br/>Carnet médical électronique partagé entre le patient <br/>et ses médecins</p>
+    <p><br/><br/>Carnet médical électronique partagé <br/>entre le patient et ses médecins</p>
+  </div>
+  <div className="patient-info">
+    <img src={recettesImage} alt="patient" className='patient3_accueil' />
+    <p><br/><br/>Repas recommandés selon <br/>les données du carnet médical</p>
   </div>
 </div>
 <h2 className='titre'><br/><br/><br/>Pour le professionnel : </h2>
@@ -121,16 +125,21 @@ const Accueil = () => {
  </p>
  <div className='img_patient_accueil'>
   <div className="patient-info">
-    <img src={patient1Image} alt="patient" className='patient1_accueil' />
+    <img src={rv_medImage} alt="patient" className='patient1_accueil' />
     <p><br/><br/>une Agenda pour gérer les rendez-vous</p>
   </div>
   <div className="patient-info">
     <img src={patient2Image} alt="patient" className='patient2_accueil' />
-    <p><br/><br/>Carnet médical électronique partagé entre le patient <br/>et ses médecins</p>
+    <p><br/><br/>Carnet médical électronique partagé <br/>entre le patient et ses médecins</p>
+  </div>
+  <div className="patient-info">
+    <img src={listepatientImage} alt="patient" className='patient3_accueil' />
+    <p><br/><br/>Gestion des listes des patients </p>
   </div>
 </div>
 <p><br/><br/><br/><br/></p>
 </div>
+
 <div className='diabeteinfodetail_accueil'>
 <div className="right_accueil1 ">
 <img src={diabete_accueil3Image} alt="diabete_accueil" className='diabete_info' /> 
@@ -249,7 +258,7 @@ Vous souhaitez mieux comprendre et vous informer sur le diabète car vous ou l�
         <img src={accueil_questionImage} alt="accueil_question" className='accueil_question' />
 
         <div className='reponse_med'> 
-        <button  onClick={() => navigate ("/register")}>Oui</button>
+        <button  onClick={() => navigate ("/Accueil/register")}>Oui</button>
         <button  onClick={closeRegisterModal}>Non</button>
         </div>
         <button onClick={closeRegisterModal} className="close-modal-button">Fermer</button>

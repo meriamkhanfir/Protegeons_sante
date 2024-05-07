@@ -7,6 +7,7 @@ import agenda1Image from "../images/agenda1.png";
 import agenda2Image from "../images/agenda2.png";
 import agenda3Image from "../images/agenda3.png";
 import agenda4Image from "../images/agenda4.png";
+import NavBarPatient from '../pages/NavBarPatient';
 
 ;
 
@@ -31,6 +32,7 @@ function Agenda() {
 
     return (
         <div className="agenda-container_agendapatient">
+            <NavBarPatient/>
         <div className='slideshow_agendapatient'>    <Slideshow images={images}  />
         </div>
            <div className="agenda_agendapatient">

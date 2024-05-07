@@ -60,6 +60,7 @@ const Calendrier = ({ rendezVousData }) => {
 
   return (
     <div className="calendrier-container_calendrier">
+
       <h1>Calendrier des rendez-vous</h1>
       <img src={Calendrierr} alt="man" className="doctor_calendrier" />
       <img src={Calendrier_1} alt="man" className="doctor1_calendrier" />

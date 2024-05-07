@@ -14,7 +14,7 @@
 
 h1 {
   font-size: 27px;
-  color: #6d1e76;
+  color: #9d24ab;
   margin-top: 40px;
   margin-bottom: 70px;
   margin-left: 25px;
@@ -127,14 +127,14 @@ button:hover svg {
   width: 100px; /* ajustez la taille selon vos besoins */
   height: auto;
   position: absolute;
-  top: 130px; /* ajustez la position en fonction de vos besoins */
+  top: 170px; /* ajustez la position en fonction de vos besoins */
 
 }
 .doctor1_calendrier {
      width: 110px; /* ajustez la taille selon vos besoins */
     height: auto;
     position: absolute;
-    top: 120px; /* ajustez la position en fonction de vos besoins */
+    top: 150px; /* ajustez la position en fonction de vos besoins */
 }
 .doctor_calendrier{
   left: 300px;

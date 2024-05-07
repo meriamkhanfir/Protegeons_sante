@@ -2,7 +2,7 @@
 
 /* Conteneur principal */
 .slideshow_agendapatient{
-    width: calc(40% - 50px); /* Déduction de la marge pour maintenir le total à 100% */
+    width: calc(35% - 50px); /* Déduction de la marge pour maintenir le total à 100% */
     float: right; /* Aligner à gauche */
     margin-right: 0px; 
     margin-top: 25px;
@@ -10,11 +10,11 @@
 }
 .agenda-container_agendapatient {
     position: fixed; /* position fixe */
-    top: 5px; /* collé en haut */
-    left: 5px; /* collé à gauche */
-    right: 5px; /* collé à droite */
-    bottom: 5px; /* collé en bas */
-    padding: 10px;
+    top: 0px; /* collé en haut */
+    left: 0px; /* collé à gauche */
+    right: 0px; /* collé à droite */
+    bottom: 0px; /* collé en bas */
+    padding: 0px;
     border: 1px solid #16c5e833;
     border-radius: 8px;
     background-color: #dfeef052;
@@ -34,7 +34,7 @@
     margin-bottom: 100px;
 
     margin-left: 100px;
-    color: #47194E;
+    color: #9d24ab;
   }
 
   
@@ -44,7 +44,7 @@
     border-collapse: collapse;
     width: calc(60% - 20px); /* Déduction de la marge pour maintenir le total à 100% */
     float: left; /* Aligner à gauche */
-    margin-left: 20px; 
+    margin-left: 25px; 
     margin-bottom: 20px;
   }
   
@@ -66,6 +66,8 @@
   /* Lien de retour */
   .back-link_agendapatient {
     display: inline-block;
+    margin-left: 25px; 
+
     margin-top: 50px;
     padding: 10px 20px;
     background-color: #d53bdd ;

@@ -3,9 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Calendrier from "../components/Calendrier";
 import api from "../api";
 import '../styles/NavBar.css'
+import NavBar from "./NavBar";
 function HomeMedecin({ onLogout }) {
   const { state } = useLocation();
-  const idmedId = state ? state.idmed_id : null;
+  const idmedId = state ? state.idmed_id : localStorage.getItem("idmed_id");
   const navigate = useNavigate();
   const [rendezVousData, setRendezVousData] = useState([]);
 
@@ -48,57 +49,10 @@ function HomeMedecin({ onLogout }) {
       });
   };
   
-  const handleLogout = () => {
-    localStorage.clear(); 
-    navigate("/Accueil/login"); 
-  };
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setIsMenuOpen(false);
-    } else {
-      setIsMenuOpen(true);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     
     <div >
-      <nav className="nav_homemed">
-      <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          Menu
-        </button>
-        <ul className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
-         
-          {idmedId && (
-            <div className="aligne_navbar_homemed">
-             
-                <li className="li-navbar_homemed" onClick={() => navigate(`/Accueil/login/home_medecin/registerpatient/${idmedId}`)} > Registrer un Patient</li> 
-              <li className="li-navbar_homemed" onClick={() => navigate(`/Accueil/login/home_medecin/CreateRv/${idmedId}`)}>
-               Créer un Rendez-vous</li>
-            
-             <li className="li-navbar_homemed"onClick={() => navigate(`/Accueil/login/home_medecin/ListePatient/${idmedId}`)}>
-                Liste des Patients</li>
-              <li className="li-navbar_homemed"onClick={() => navigate(`/Accueil/login/home_medecin/Requests/${idmedId}`)}>
-                Demandes de changement</li>
-             
-              <li className="li-navbar_homemed"onClick={handleLogout}>
-                Déconnexion</li>
-             
-            </div>
-          )}
-        </ul>
-      </nav>
+      <NavBar/>
       <div className="sous_container_homemed"></div>
       {Array.isArray(rendezVousData) && <Calendrier rendezVousData={rendezVousData} />} 
     </div>

@@ -3,6 +3,7 @@ import api from '../api';
 import changermedImage from "../images/changermed.png";
 import { useParams, useNavigate,Link } from 'react-router-dom';
 import "../styles/FormChangementDoctor.css";
+import NavBarPatient from '../pages/NavBarPatient';
 function ChangeDoctorForm() {
   const [newDoctorEmail, setNewDoctorEmail] = useState('');
   const [notification, setNotification] = useState('');
@@ -43,6 +44,7 @@ function ChangeDoctorForm() {
 
   return (
     <div>
+      <NavBarPatient/>
       {notification && <div>{notification}</div>}
       <form onSubmit={handleSubmit}>
         <input className='input_formchangermed'
@@ -63,7 +65,7 @@ function ChangeDoctorForm() {
             <th>État</th>
             <th>Mobile</th>
             <th>Nom & Prénom</th>
-            <th>Specialité</th>
+            <th>Spécialité</th>
           </tr>
         </thead>
         <tbody>

@@ -1,7 +1,8 @@
 // Importez les dépendances nécessaires
 import React, { useState, useEffect } from 'react';
 import api from '../api';
-import changermedImage from "../images/changermed.png";
+import changermedImage from "../images/changement.png";
+import NavBar from '../pages/NavBar';
 
 import { useParams, useNavigate,Link } from 'react-router-dom';
 import "../styles/FormChangementDoctor.css";
@@ -56,6 +57,8 @@ function DoctorChangeRequests() {
 
   return (
     <div>
+       <NavBar/>
+
       <img src={changermedImage} alt="man" className="changermed_formchangermed " />
       <h2 className='title_formchangermed'>Demandes de changement de médecin</h2>
       <table className='table_formchangermed'>

@@ -88,7 +88,7 @@ nav li:hover {
     padding: 1px;
     margin-top: 20px;
     margin-left: 30px;
-    color: #47194E;
+    color: #9d24ab;
   }
 
   .editpatient_registpatient {
@@ -268,7 +268,7 @@ nav li:hover {
     padding: 10px;
     margin-top: 30px;
     margin-left: 25px;
-    color: #47194E;
+    color: #9d24ab;
   }
 
   .editpatient_registpatient {
@@ -321,7 +321,7 @@ nav li:hover {
   .label_registpatient::after {
     content: '';
     display: block;
-    width: 98%;
+    width: 95%;
     height: 0.75px;
     background-color: #3385b591;
     margin-top: 0px;
@@ -339,12 +339,15 @@ nav li:hover {
   .datepicker_registpatient ,
   textarea {
     width: calc(100% - 14px);
-    padding: 7px;
+    padding: 10px;
     border: 1px solid #cccccc80;
     border-radius: 8px;
     transition: border-color 0.3s ease;
   }
-
+  .select_registpatient{
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
   .input_registpatient:focus,
   .select_registpatient:focus,
   .datepicker_registpatient:focus,

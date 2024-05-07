@@ -6,7 +6,9 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Assurez-vous d'importer les styles CSS si nécessaire
 import "../styles/Consultation.css";
 import moduleName from 'module';
-import consultationImage from "../images/consultation.png"
+import consultationImage from "../images/consultation.png";
+import NavBar from '../pages/NavBar';
+
 function Consultation() {
   const { id } = useParams();
   const [consultation, setConsultation] = useState({});
@@ -117,6 +119,8 @@ function Consultation() {
 
   return (
     <div className="consultation-container_consultation">
+       <NavBar/>
+
       <h1 className='consultationtitle_consultation'>Consultation Details</h1>
       <img src={consultationImage} alt="man" className="consultationimage_consultation " />
 
@@ -128,11 +132,11 @@ function Consultation() {
 
       <form className="consultation-form_consultation" onSubmit={handleSubmit}>
         <label className='label_consultation' >
-          Ordonnance:
+        <br/> Ordonnance:<br/>
           <textarea className='textarea_consultation' name="ordonnance" value={formValues.ordonnance} onChange={handleChange} />
         </label>
         <label className='label_consultation'>
-          Bilan:
+          Bilan:<br/>
           <textarea className='textarea_consultation' name="bilan" value={formValues.bilan} onChange={handleChange} />
         </label>
         <input className='input_consultation' type="file" accept=".pdf" onChange={handlePdfChange} />

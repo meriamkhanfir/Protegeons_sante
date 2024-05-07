@@ -1,0 +1,27 @@
+/* Notification.css */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f4f2f2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
+  }
+  
+  .notification-content {
+    margin-bottom: 10px;
+  }
+  
+  .close-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .img_notif{
+    width: 200px;
+  }
+  

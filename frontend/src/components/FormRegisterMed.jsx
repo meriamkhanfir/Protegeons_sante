@@ -165,7 +165,7 @@ const FormRegisterMed = () => {
             <button type="submit" className="confirm-button_registmed">
               Confirmer
             </button>
-            <button className="cancel-button_registmed">Annuler</button>
+            <button onClick={() => navigate ("/Accueil")} className="cancel-button_registmed">Annuler</button>
           </div>
         </div>
       </form>

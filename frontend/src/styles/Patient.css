@@ -225,7 +225,7 @@ textarea:focus {
     padding: 1px;
     margin-top: 20px;
     margin-left: 30px;
-    color: #47194E;
+    color: #9d24ab;
   }
   
   .consult {
@@ -388,7 +388,7 @@ textarea:focus {
     font-size: 36px;
     padding: 1px;
     margin: 70px 70px; /* Adjust margin to center vertically */
-    color: #47194E;
+    color: #9d24ab;
     position: absolute; /* Positioning */
     top: 10%; /* Positioning */
     left: 52%; /* Positioning */

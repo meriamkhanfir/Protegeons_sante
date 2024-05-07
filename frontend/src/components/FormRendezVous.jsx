@@ -7,6 +7,7 @@ import createrv from "../images/createrv.png";
 import api from '../api';
 import { useNavigate,useParams } from 'react-router-dom';
 
+import NavBar from '../pages/NavBar';
 
 // Définition de la fonction fetchPatientIdByEmail
 /*const fetchPatientIdByEmail = async (email) => {
@@ -90,6 +91,8 @@ const FormRv = () => {
     
     return (
       <div className="container_formrendezvous">
+         <NavBar/>
+
         
             <h1 className="title_rv_formrendezvous">Créer un rendez-vous</h1>
             <div className="format_formrendezvous">

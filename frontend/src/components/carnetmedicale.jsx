@@ -7,8 +7,9 @@ import carnet from '../images/carnet.png';
 import consult1 from '../images/consult1.png';
 import api from "../api";
 import TabWidget from '../pages/TabWidget'; // Assurez-vous que le chemin d'importation est correct
-
+import NavBar from "../pages/NavBar";
 function CarnetMedical() {
+  
   const { patientId } = useParams();
   const [patientInfo, setPatientInfo] = useState(null);
   const [consultations, setConsultations] = useState([]);
@@ -18,30 +19,29 @@ function CarnetMedical() {
     taille: '',
     allergies: ''
   });
+  const [selectedConsultation, setSelectedConsultation] = useState(null);
 
   useEffect(() => {
-    // Appels à l'API pour récupérer les informations du patient
-    api.get(`http://localhost:8000/api/patients/${patientId}/`)
+    // Appels à l'API pour récupérer les informations du patient et les consultations
+    api.get(`/api/patients/${patientId}/`)
       .then((res) => {
         setPatientInfo(res.data);
-        setEditedPatientInfo(res.data); // Initialise les informations éditées avec les données actuelles
       })
       .catch((error) => {
         console.error('Error fetching patient information:', error);
       });
 
-  }, [patientId]);
-
-  const handleshowConsultations = () => {
-    api.get(`http://localhost:8000/api/consultations/${patientId}/`)
+    api.get(`/api/consultations/${patientId}/`)
       .then((res) => {
         setConsultations(res.data.consultations);
       })
       .catch((error) => {
         console.error('Error fetching patient consultations:', error);
       });
-    
-  };
+  }, [patientId]);
+
+  
+  
   
   const handleEditClick = () => {
     setIsEditing(true);
@@ -58,7 +58,7 @@ function CarnetMedical() {
   const handleSubmit = () => {
     setPatientInfo(editedPatientInfo);
     // Envoyer les informations mises à jour à l'API
-    api.put(`http://localhost:8000/api/patients/update/${patientId}/`, editedPatientInfo)
+    api.put(`/api/patients/update/${patientId}/`, editedPatientInfo)
       .then((res) => {
         //setPatientInfo(res.data);
         setIsEditing(false); // Désactive le mode édition après la mise à jour
@@ -67,17 +67,16 @@ function CarnetMedical() {
         console.error('Error updating patient information:', error);
       });
   };
-  useEffect(() => {
-    handleshowConsultations();
-  }, []);
-  
+ 
 
+ 
   if (!patientInfo) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="container_carnetmedical">
+      <NavBar/>
       <div className="carnet-medical_carnetmedical">
         <img src={carnet} alt="carnet" className="carnet_carnetmedical" />
         <h1>Carnet Médical</h1>
@@ -115,21 +114,26 @@ function CarnetMedical() {
             </div>
           </div>
 
-          <div label="Consultations">
+           <div label="Consultations">
             <div className="consultations-container_carnetmedical">
-            {consultations.map((consultation) => (
-          <div key={consultation.id} className="consultation_carnetmedical">
-            <p>Date de consultation: {consultation.date_consultation}</p>
-            <p>Heure de consultation: {consultation.heure_consultation}</p>
-            <p>Ordonnance: {consultation.ordonnance}</p>
-            <p>Description: {consultation.description}</p>
-            <p>Bilan: {consultation.bilan}</p>
-            <p>Médecin: {consultation.medecin}</p>
-            {/* Ajoutez ici d'autres informations de consultation si nécessaire */}
-          </div>
-            ))}
+            {consultations.map((consultation, index) => (
+                <button key={consultation.id} className="consultation_carnetmedical" onClick={() => setSelectedConsultation(consultation)}>{`Consultation ${index + 1}`}</button>
+      
+              ))}
             </div>
-          </div>
+            {selectedConsultation && (
+              <div className="selected-consultation">
+                <h2>Consultation sélectionnée</h2>
+                <p>Date de consultation: {selectedConsultation.date_consultation}</p>
+                <p>Heure de consultation: {selectedConsultation.heure_consultation}</p>
+                <p>Ordonnance: {selectedConsultation.ordonnance}</p>
+                <p>Description: {selectedConsultation.description}</p>
+                <p>Bilan: {selectedConsultation.bilan}</p>
+                <p>Médecin: {selectedConsultation.medecin}</p>
+                <p>Bilan PDF: {selectedConsultation.bilan_pdf ? <a href={`http://localhost:8000${selectedConsultation.bilan_pdf}`} target="_blank" rel="noopener noreferrer">Voir le PDF</a> : "Aucun fichier PDF disponible"}</p>
+                </div>
+            )}
+              </div>
         </TabWidget>
       </div>
     </div>

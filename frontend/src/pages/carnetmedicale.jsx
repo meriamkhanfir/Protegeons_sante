@@ -7,6 +7,7 @@ import carnet from '../images/carnet.png';
 import consult1 from '../images/consult1.png';
 import api from "../api";
 import TabWidget from './TabWidget'; // Assurez-vous que le chemin d'importation est correct
+import NavBar from './NavBar';
 
 function CarnetMedical() {
   const { patientId } = useParams();
@@ -79,7 +80,8 @@ function CarnetMedical() {
 
   return (
     <div className="container_carnetmedical">
-     
+      <NavBar/>
+
       <div className="carnet-medical_carnetmedical">
         <img src={carnet} alt="carnet" className="carnet_carnetmedical" />
         <h1>Carnet Médical</h1>
@@ -92,13 +94,13 @@ function CarnetMedical() {
             <div className='right_carnetmedical'>
               {isEditing ? (
                 <>
-                  <label>Poids:</label>
-                  <input type="text" name="poids" value={editedPatientInfo.poids} onChange={handleInputChange} />
-                  <label>Taille:</label>
-                  <input type="text" name="taille" value={editedPatientInfo.taille} onChange={handleInputChange} />
-                  <label>Allergies:</label>
-                  <input type="text" name="allergies" value={editedPatientInfo.allergies} onChange={handleInputChange} />
-                  <button onClick={handleSubmit}>Enregistrer</button>
+                  <label className="label_carnetmedical">Poids:</label>
+                  <input className="input_carnetmedical" type="text" name="poids" value={editedPatientInfo.poids} onChange={handleInputChange} />
+                  <label className="label_carnetmedical">Taille:</label>
+                  <input className="input_carnetmedical" type="text" name="taille" value={editedPatientInfo.taille} onChange={handleInputChange} />
+                  <label className="label_carnetmedical">Allergies:</label>
+                  <input className="input_carnetmedical" type="text" name="allergies" value={editedPatientInfo.allergies} onChange={handleInputChange} />
+                  <button className="bouton-modifier_carnetmedical" onClick={handleSubmit}>Enregistrer</button>
                 </>
               ) : (
                 <>
@@ -111,7 +113,7 @@ function CarnetMedical() {
                   <p>Allergies: {patientInfo.allergies}</p>
                   <p>Type diabète: {patientInfo.type_diabete}</p>
                   <p>Groupe Sanguin: {patientInfo.groupe_sanguin}</p>
-                  <button onClick={handleEditClick}>Modifier</button>
+                  <button className="bouton-modifier_carnetmedical" onClick={handleEditClick}>Modifier</button>
                 </>
               )}
             </div>

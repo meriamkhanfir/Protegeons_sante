@@ -67,7 +67,7 @@
     padding: 1px;
     margin-top: 20px;
     margin-left: 30px;
-    color: #47194E;
+    color: #9d24ab;
   }
 
   .registmed_registmed {
@@ -224,10 +224,10 @@
 
   .title_medecin_registmed {
     font-size: 34px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 30px;
-    margin-left: 25px;
-    color: #47194E;
+    margin-left: 2%;
+    color: #9d24ab;
   }
 
   .registmed_registmed {
@@ -252,7 +252,7 @@
   }
 
   .left_registmed {
-    width: calc(50% - 20px); /* Déduction de la marge pour maintenir le total à 100% */
+    width: calc(50% - 10px); /* Déduction de la marge pour maintenir le total à 100% */
     float: left; /* Aligner à gauche */
     margin-right: 20px; /* Espacement entre la partie gauche et la partie droite */
   }
@@ -271,7 +271,7 @@
 
   .label_registmed {
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-size: 20px;
     color: #2c0c5a;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -280,11 +280,11 @@
   .label_registmed::after {
     content: '';
     display: block;
-    width: 98%;
+    width: 95%;
     height: 0.75px;
     background-color: #3385b591;
     margin-top: 0px;
-    margin-left: 4px;
+    margin-left: 6px;
   }
 
   .label_registmed:hover::after {
@@ -294,8 +294,7 @@
 
   .input_registmed,
   .select__registmed, /* Suppression du caractère en trop */
-  .datepicker_registpatient, /* Modification du sélecteur */
-  textarea {
+  .datepicker_registmed {
     width: calc(100% - 14px);
     padding: 7px;
     border: 1px solid #cccccc80;
@@ -305,8 +304,7 @@
 
   .input_registmed:focus,
   .select__registmed:focus, /* Suppression du caractère en trop */
-  .datepicker_registpatient:focus, /* Modification du sélecteur */
-  textarea:focus {
+  .datepicker_registmed:focus{
     outline: none;
     border-color: #43aedc;
   }
