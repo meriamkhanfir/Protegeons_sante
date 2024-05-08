@@ -6,10 +6,11 @@ import infopers1 from '../images/infopers1.png';
 import carnet from '../images/carnet.png';
 import consult1 from '../images/consult1.png';
 import api from "../api";
-import TabWidget from './TabWidget'; // Assurez-vous que le chemin d'importation est correct
+import TabWidget from '../pages/TabWidget'; // Assurez-vous que le chemin d'importation est correct
 import NavBar from './NavBar';
 
 function CarnetMedical() {
+  
   const { patientId } = useParams();
   const [patientInfo, setPatientInfo] = useState(null);
   const [consultations, setConsultations] = useState([]);
@@ -19,6 +20,7 @@ function CarnetMedical() {
     taille: '',
     allergies: ''
   });
+  const [selectedConsultation, setSelectedConsultation] = useState(null);
 
   useEffect(() => {
     // Appels à l'API pour récupérer les informations du patient
@@ -37,14 +39,15 @@ function CarnetMedical() {
     api.get(`http://localhost:8000/api/consultations/${patientId}/`)
       .then((res) => {
         setConsultations(res.data.consultations);
+        
       })
       .catch((error) => {
         console.error('Error fetching patient consultations:', error);
       });
-    
   };
   
-
+  
+  
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -72,47 +75,51 @@ function CarnetMedical() {
   useEffect(() => {
     handleshowConsultations();
   }, []);
-  
 
+  const handleConsultationClick = (consultation) => {
+    setSelectedConsultation(consultation);
+
+  };
+  
   if (!patientInfo) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="container_carnetmedical">
-      <NavBar/>
+   <NavBar/>
 
-      <div className="carnet-medical_carnetmedical">
-        <img src={carnet} alt="carnet" className="carnet_carnetmedical" />
+<div className="carnet-medical_carnetmedical"> 
+<img src={carnet} alt="carnet" className="carnet_carnetmedical" />
         <h1>Carnet Médical</h1>
         <img src={infopers} alt="secret" className="infopers_carnetmedical" />
         <TabWidget>
           <div label="Informations personnelles">
-            <div className='left_carnetmedical'>
-              <img src={infopers1} alt="infopers" className="infopers1_carnetmedical" />
+          <div className='left_carnetmedical'>
+          <img src={infopers1} alt="infopers" className="infopers1_carnetmedical" />
             </div>
             <div className='right_carnetmedical'>
               {isEditing ? (
                 <>
-                  <label className="label_carnetmedical">Poids:</label>
-                  <input className="input_carnetmedical" type="text" name="poids" value={editedPatientInfo.poids} onChange={handleInputChange} />
-                  <label className="label_carnetmedical">Taille:</label>
-                  <input className="input_carnetmedical" type="text" name="taille" value={editedPatientInfo.taille} onChange={handleInputChange} />
-                  <label className="label_carnetmedical">Allergies:</label>
-                  <input className="input_carnetmedical" type="text" name="allergies" value={editedPatientInfo.allergies} onChange={handleInputChange} />
-                  <button className="bouton-modifier_carnetmedical" onClick={handleSubmit}>Enregistrer</button>
-                </>
+                <label className="label_carnetmedical">Poids:</label>
+                <input className="input_carnetmedical" type="text" name="poids" value={editedPatientInfo.poids} onChange={handleInputChange} />
+                <label className="label_carnetmedical">Taille:</label>
+                <input className="input_carnetmedical" type="text" name="taille" value={editedPatientInfo.taille} onChange={handleInputChange} />
+                <label className="label_carnetmedical">Allergies:</label>
+                <input className="input_carnetmedical" type="text" name="allergies" value={editedPatientInfo.allergies} onChange={handleInputChange} />
+                <button className="bouton-modifier_carnetmedical" onClick={handleSubmit}>Enregistrer</button>
+              </>
               ) : (
                 <>
-                  <p>Nom: {patientInfo.nom}</p>
-                  <p>Prénom: {patientInfo.prenom}</p>
-                  <p>email: {patientInfo.email}</p>
-                  <p>Date de Naissance: {patientInfo.date_de_naissance}</p>
-                  <p>Poids: {patientInfo.poids}</p>
-                  <p>Taille: {patientInfo.taille}</p>
-                  <p>Allergies: {patientInfo.allergies}</p>
-                  <p>Type diabète: {patientInfo.type_diabete}</p>
-                  <p>Groupe Sanguin: {patientInfo.groupe_sanguin}</p>
+                  <p><strong>Nom: </strong>{patientInfo.nom}</p>
+                  <p><strong>Prénom:</strong> {patientInfo.prenom}</p>
+                  <p><strong>email: </strong>{patientInfo.email}</p>
+                  <p><strong>Date de Naissance:</strong> {patientInfo.date_de_naissance}</p>
+                  <p><strong>Poids:</strong> {patientInfo.poids}</p>
+                  <p><strong>Taille: </strong>{patientInfo.taille}</p>
+                  <p><strong>Allergies: </strong>{patientInfo.allergies}</p>
+                  <p><strong>Type diabète:</strong> {patientInfo.type_diabete}</p>
+                  <p><strong>Groupe Sanguin:</strong> {patientInfo.groupe_sanguin}</p>
                   <button className="bouton-modifier_carnetmedical" onClick={handleEditClick}>Modifier</button>
                 </>
               )}
@@ -120,19 +127,24 @@ function CarnetMedical() {
           </div>
 
           <div label="Consultations">
-            <div className="consultations-container_carnetmedical">
-            {consultations.map((consultation) => (
-          <div key={consultation.id} className="consultation_carnetmedical">
-            <p>Date de consultation: {consultation.date_consultation}</p>
-            <p>Heure de consultation: {consultation.heure_consultation}</p>
-            <p>Ordonnance: {consultation.ordonnance}</p>
-            <p>Description: {consultation.description}</p>
-            <p>Bilan: {consultation.bilan}</p>
-            <p>Médecin: {consultation.medecin}</p>
-            {/* Ajoutez ici d'autres informations de consultation si nécessaire */}
-          </div>
-            ))}
+          <div className="consultations-container_carnetmedical">
+            {consultations.map((consultation, index) => (
+                <button key={consultation.id} className="consultation_carnetmedical" onClick={() => setSelectedConsultation(consultation)}>{`Consultation ${index + 1}`}</button>
+      
+              ))}
             </div>
+            {selectedConsultation && (
+              <div className="selected-consultation">
+                <h2>Consultation sélectionnée</h2>
+                <p> <strong>Date de consultation:</strong> {selectedConsultation.date_consultation}</p>
+                <p><strong>Heure de consultation: </strong>{selectedConsultation.heure_consultation}</p>
+                <p><strong>Ordonnance:</strong> {selectedConsultation.ordonnance}</p>
+                <p><strong>Description:</strong> {selectedConsultation.description}</p>
+                <p><strong>Bilan:</strong> {selectedConsultation.bilan}</p>
+                <p><strong>Médecin: </strong>{selectedConsultation.medecin}</p>
+                <p><strong>Bilan PDF:</strong> {selectedConsultation.bilan_pdf ? <a href={`http://localhost:8000${selectedConsultation.bilan_pdf}`} className="voirpdf_carnetmedical" target="_blank" rel="noopener noreferrer">Voir le PDF</a> : "Aucun fichier PDF disponible"}</p>                              
+              </div>
+            )}
           </div>
         </TabWidget>
       </div>

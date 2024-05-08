@@ -195,3 +195,39 @@ background-color: #f7eff6;
     border-radius: 8px;
     transition: border-color 0.3s ease;
   }
+  .selected-consultation p{
+    font-size: 20px;
+    margin: 7px;
+    margin-top: 10px;
+    padding: 1px;
+    margin-left: 20px;
+    color: #2c0c5a;
+
+  }
+  .selected-consultation h2{
+    font-size: 32px;
+padding: 10px;
+color: #9717a8;
+
+  }
+  .voirpdf_carnetmedical{
+    padding: 10px;
+    color: #155590;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+  .voirpdf_carnetmedical:hover{
+    padding: 12px;
+    color: #7e15a0;
+    text-decoration: none;
+  }
+  .consultation_carnetmedical{
+    padding: 12px;
+    color: #155da0;
+    font-size: 14px;
+    font-weight: bold;
+
+  }
+
+ 
