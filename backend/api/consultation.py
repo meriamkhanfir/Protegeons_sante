@@ -13,6 +13,7 @@ from .models import consultations  # Assurez-vous d'importer correctement le mod
 from rest_framework.decorators import permission_classes
 from rest_framework import permissions
 from django.db.models import Q
+from datetime import datetime, timedelta
 @permission_classes([permissions.IsAuthenticated])
 @csrf_exempt
 @require_http_methods(["POST"])  # Utilisez POST pour la méthode HTTP
@@ -72,69 +73,53 @@ def get_consultation_detail(request,id_conslt):
         return JsonResponse({"error": "Méthode non autorisée"}, status=405)
 
 
-from datetime import datetime, timedelta           
+
+
 @csrf_exempt
-def create_rendez_vous(request,idmedId):
+@require_http_methods(["POST"])
+def create_rendez_vous(request, idmedId):
     if request.method == 'POST':
         try:
             data = json.loads(request.body.decode('utf-8'))
             email = data.get('email')
-            idmede = idmedId
             date_consultation = data.get('dateConsultation')
             heure_consultation = data.get('heureConsultation')
             notes = data.get('notes')
-            idpat = data.get('idpat')
-            print("Received data:", data)
-            print("Type of idmede:", type(idmede))
 
-            patient_obj = patient.objects.get(email=email)
+            patient_obj = get_object_or_404(patient, email=email)
             idpat = patient_obj.idusers
-            print("Type of patient_obj.idmed_id:", type(patient_obj.idmed_id))
-            # Convert idmede to integer
-            idmede = int(idmede)
+
+            # Convertir les identifiants en entiers
+            idmede = int(idmedId)
 
             # Vérifier que toutes les données requises sont fournies
-            if not all([idmede, idpat, date_consultation, heure_consultation, notes]):
+            if not all([idmede, idpat, date_consultation, heure_consultation]):
                 return JsonResponse({"error": "Veuillez fournir tous les champs requis."}, status=400)
 
-            print(idpat)
             # Vérifier si le patient associé au rendez-vous est bien celui du médecin connecté
             if patient_obj.idmed_id != idmede:
-                print("patient_obj.idmed_id:", patient_obj.idmed_id)
-                print("idmede:", idmede)
                 return JsonResponse({"error": "Vous n'êtes pas autorisé à créer un rendez-vous pour ce patient."}, status=403)
-            
 
+            # Convertir les chaînes de date et heure en objets datetime
             date_consultation = datetime.strptime(date_consultation, '%Y-%m-%d').date()
-
-            # Convertir l'heure de consultation en objet datetime.time
             heure_consultation = datetime.strptime(heure_consultation, '%H:%M').time()
 
+            # Créer un datetime combiné pour la date et l'heure du nouveau rendez-vous
+            current_rendez_vous_datetime = datetime.combine(date_consultation, heure_consultation)
 
-            # Vérifier s'il existe déjà un rendez-vous pour le même patient à la même date et à la même heure
-            existing_rendez_vous_same_time = consultations.objects.filter(
-                idpat=idpat,
-                date_consultation=date_consultation,
-                heure_consultation=heure_consultation,
-                description=notes
-            ).exists()
-            if existing_rendez_vous_same_time:
-                return JsonResponse({"error": "Ce créneau est déjà pris pour ce patient."}, status=400)
-           
-            # Filtrer tous les rendez-vous existants pour le même patient et la même date de consultation
+            # Filtrer tous les rendez-vous existants pour tous les patients à la même date de consultation
             existing_rendez_vous_same_day = consultations.objects.filter(
-              idpat=idpat,
-              date_consultation=date_consultation,
+                date_consultation=date_consultation,
             )
 
-           # Vérifier l'intervalle de 20 minutes entre le nouveau rendez-vous et les rendez-vous existants sur le même jour
-            current_rendez_vous_datetime = datetime.combine(date_consultation, heure_consultation)
+            # Vérifier l'intervalle de 20 minutes entre le nouveau rendez-vous et les rendez-vous existants sur le même jour pour tous les patients
             for rendez_vous in existing_rendez_vous_same_day:
-               rendez_vous_datetime = datetime.combine(rendez_vous.date_consultation, rendez_vous.heure_consultation)
-               interval = abs(current_rendez_vous_datetime - rendez_vous_datetime)
-               if interval.total_seconds() < 20 * 60:
-                return JsonResponse({"error": "Il doit y avoir un intervalle de 20 minutes minimum entre les rendez-vous sur le même jour."}, status=400)
+                rendez_vous_datetime = datetime.combine(rendez_vous.date_consultation, rendez_vous.heure_consultation)
+                interval = abs((current_rendez_vous_datetime - rendez_vous_datetime).total_seconds() / 60)
+                if interval < 20:
+                    return JsonResponse({"error": "Il doit y avoir un intervalle de 20 minutes minimum entre les rendez-vous sur le même jour."}, status=400)
 
+            # Créer et enregistrer le nouveau rendez-vous
             rendez_vous = consultations.objects.create(
                 idpat_id=idpat,
                 idmede_id=idmede,
@@ -144,10 +129,11 @@ def create_rendez_vous(request,idmedId):
             )
             rendez_vous.save()
 
-            return JsonResponse({'redirect': '/home_medecin',"success": True})
+            return JsonResponse({'redirect': '/home_medecin', "success": True})
 
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
+
 
 @require_http_methods(["GET"])
 def get_consultations_patient(request, patient_id):

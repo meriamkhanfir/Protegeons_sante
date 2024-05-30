@@ -8,7 +8,14 @@
   min-height: 100vh !important;
 }
 
-
+.register-button{
+background-color: #2a67a0;
+color: #f0f0f0;
+border-radius: 10px;
+margin: 15px;
+padding: 5px;
+font-size: 16px;
+}
 .left_loginmed  {
 
   width: calc(20% - 10px);

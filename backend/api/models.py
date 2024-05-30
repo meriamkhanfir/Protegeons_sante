@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, role=None, **extra_fields):
         if not email:
@@ -92,3 +95,16 @@ class DoctorChangeRequest(models.Model):
 
     def __str__(self):
         return f"Change Request for {self.patient} to {self.new_doctor} ({self.status})"
+    # models.py
+
+
+class Appointment(models.Model):
+    patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
+    date = models.DateTimeField()
+    description = models.TextField()
+
+    @staticmethod
+    def get_upcoming_appointments(patient_id):
+        now = timezone.now()
+        upcoming = now + timedelta(hours=24)
+        return Appointment.objects.filter(patient_id=patient_id, date__range=(now, upcoming))

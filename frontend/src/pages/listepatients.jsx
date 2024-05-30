@@ -1,40 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { differenceInYears } from 'date-fns'; // Import de la fonction differenceInYears depuis date-fns
-import '../styles/NavBar.css'
-import { useParams } from 'react-router-dom';
+import { differenceInYears } from 'date-fns';
+import '../styles/NavBar.css';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import api from '../api';
 import '../styles/listePatient.css';
 import patientImage from "../images/patients.png";
 import consultImage from "../images/consult1.png";
 import supprimerImage from "../images/supprimer.png";
-//import deleteIcon from "./deleteicon.png";
-import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+
 function Listepatient() {
   const { state } = useLocation();
-
   const idmedId = state ? state.idmed_id : null;
   const navigate = useNavigate();
+  const { medecinId } = useParams();
 
-  useEffect(() => {
-    
-  }, [idmedId]);
-
-  
-  const handleLogout = () => {
-    localStorage.clear(); 
-    navigate("/Accueil/login"); 
-  };
   const [patientsData, setPatientsData] = useState([]);
   const [showPatients, setShowPatients] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState(null);
-  const { medecinId } = useParams();
   const [sortBy, setSortBy] = useState("nom");
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortAge, setSortAge] = useState("asc");
   const [patientIdToDelete, setPatientIdToDelete] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  useEffect(() => {
+    handleShowPatients();
+  }, [medecinId]);
 
   const handleShowPatients = () => {
     api.get(`http://localhost:8000/api/medecin/ListesPatients/${medecinId}/`)
@@ -57,23 +49,18 @@ function Listepatient() {
       });
   };
 
-  const handleDeletePatient = (patientId) => {
-    setPatientsData(patientsData.filter(patient => patient.id !== patientId));
-    // Cacher l'icône de confirmation après la suppression
-    setShowConfirmation(false);
+  const handleDeletePatient = () => {
+    if (patientIdToDelete) {
+      setPatientsData(patientsData.filter(patient => patient.id !== patientIdToDelete));
+      setShowConfirmation(false);
+      setPatientIdToDelete(null);
+    }
   };
-  
 
   const confirmDeletion = (patientId) => {
-    // Afficher la page de confirmation et définir le patient à supprimer
     setPatientIdToDelete(patientId);
     setShowConfirmation(true);
   };
-
-  useEffect(() => {
-    handleShowPatients();
-    handleDeletePatient ();
-  }, []);
 
   const filteredPatientsData = patientsData.filter((patient) => {
     return (
@@ -95,7 +82,9 @@ function Listepatient() {
       return 0;
     }
     if (sortBy === "age") {
-      return sortOrder === "asc" ? differenceInYears(new Date(), new Date(a.date_de_naissance)) - differenceInYears(new Date(), new Date(b.date_de_naissance)) : differenceInYears(new Date(), new Date(b.date_de_naissance)) - differenceInYears(new Date(), new Date(a.date_de_naissance));
+      return sortOrder === "asc" 
+        ? differenceInYears(new Date(), new Date(a.date_de_naissance)) - differenceInYears(new Date(), new Date(b.date_de_naissance))
+        : differenceInYears(new Date(), new Date(b.date_de_naissance)) - differenceInYears(new Date(), new Date(a.date_de_naissance));
     }
     return 0;
   });
@@ -111,8 +100,7 @@ function Listepatient() {
 
   return (
     <div className="container_listepatient">
- <NavBar/>
-      
+      <NavBar/>
       {showPatients && (
         <div className="format_listepatient">
           <h1 className="title_patients_listepatient">Liste des patients</h1>
@@ -176,8 +164,7 @@ function Listepatient() {
         <div className="confirmation-modal_listepatient">
           <img src={supprimerImage} alt="supprimer" className="supprimer_listepatient" />
           <p>Êtes-vous sûr de vouloir supprimer ce patient ?</p>
-          <button onClick={() =>  setPatientIdToDelete(null)}>Oui</button>
-
+          <button onClick={handleDeletePatient}>Oui</button>
           <button onClick={() => setShowConfirmation(false)}>Non</button>
         </div>
       )}

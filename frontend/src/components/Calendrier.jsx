@@ -15,7 +15,7 @@ import api from "../api";
 const localizer = momentLocalizer(moment);
 
 const eventStyleGetter = (event) => {
-  const backgroundColor = '';  
+  const backgroundColor = '';
   return {
     style: {
       backgroundColor: backgroundColor,
@@ -24,49 +24,50 @@ const eventStyleGetter = (event) => {
 };
 
 const Calendrier = ({ rendezVousData }) => {
-    const navigate = useNavigate();
-    console.log("helle" ,rendezVousData);
+  const navigate = useNavigate();
+  const [events, setEvents] = useState(rendezVousData);
 
-    const handleAgendaClick = (event) => {
-        navigate(`/Accueil/login/home_medecin/consultation/${event.id}`);
-        console.log("Informations du rendez-vous:", event);
-      };
+  useEffect(() => {
+    setEvents(rendezVousData);
+  }, [rendezVousData]);
 
-    const handleDeleteRendezVous = (rendezVousId) => {
-        confirmAlert({
-          title: 'Supprimer le rendez-vous',
-          message: 'Êtes-vous sûr de vouloir supprimer ce rendez-vous ?',
-          buttons: [
-            {
-              label: 'Oui, supprimer',
-              onClick: () => {
-                api.delete(`http://localhost:8000/api/delete/consultations/${rendezVousId}/`)
-                  .then(response => {
-                    console.log('Rendez-vous deleted successfully:', response.data);
-                    // Recharger les rendez-vous après suppression
-                    // reloadRendezVous(); // Cette fonction n'est pas définie, vous devez la définir ou la remplacer par une autre logique pour recharger les rendez-vous
-                  })
-                  .catch(error => console.error('Error deleting rendez-vous:', error));
-              },
-            },
-            {
-              label: 'Annuler',
-            },
-          ],
-        });
-      };
+  const handleAgendaClick = (event) => {
+    navigate(`/Accueil/login/home_medecin/consultation/${event.id}`);
+    console.log("Informations du rendez-vous:", event);
+  };
 
-
+  const handleDeleteRendezVous = (rendezVousId) => {
+    confirmAlert({
+      title: 'Supprimer le rendez-vous',
+      message: 'Êtes-vous sûr de vouloir supprimer ce rendez-vous ?',
+      buttons: [
+        {
+          label: 'Oui, supprimer',
+          onClick: () => {
+            api.delete(`http://localhost:8000/api/delete/consultations/${rendezVousId}/`)
+              .then(response => {
+                console.log('Rendez-vous deleted successfully:', response.data);
+                // Mettre à jour les événements après suppression
+                setEvents(prevEvents => prevEvents.filter(event => event.id !== rendezVousId));
+              })
+              .catch(error => console.error('Error deleting rendez-vous:', error));
+          },
+        },
+        {
+          label: 'Annuler',
+        },
+      ],
+    });
+  };
 
   return (
     <div className="calendrier-container_calendrier">
-
       <h1>Calendrier des rendez-vous</h1>
       <img src={Calendrierr} alt="man" className="doctor_calendrier" />
       <img src={Calendrier_1} alt="man" className="doctor1_calendrier" />
       <Calendar
         localizer={localizer}
-        events={rendezVousData}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         eventPropGetter={eventStyleGetter}

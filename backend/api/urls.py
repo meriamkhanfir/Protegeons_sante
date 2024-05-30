@@ -1,10 +1,11 @@
 
 
-# api/urls.py
+#urls.py
 
 from django.urls import path
 from django.contrib import admin
 from django.urls import path,include
+
 #from api.views import UserLoginAPI
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from api.views import    get_patient_info, get_patient_par_medecin , save_pdf, serve_pdf,  update_patient
@@ -14,6 +15,7 @@ from api.ChangementRequest import accept_change_request, change_doctor_request, 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from api.consultation import delete_consultation, get_consultation_detail,update_consultation,create_rendez_vous, rendez_vous_patient, rendez_vous_medecin, get_consultations_patient
 from api import views
+from api.views import get_upcoming_appointments
 
 urlpatterns = [
    
@@ -37,6 +39,8 @@ urlpatterns = [
    # path('send-test-email/', send_test_email, name='send_test_email'),
     path('api/rendez-vous-patient/<int:patient_id>/', rendez_vous_patient, name='rendez_vous_patient'),
    # path('api/rendez_vous/<int:user_id>/',get_rendez_vous,name='get_rendez_vous'),
+    path('api/appointments/upcoming/<int:patient_id>/', get_upcoming_appointments, name='get_upcoming_appointments'),
+
 ]
 
 

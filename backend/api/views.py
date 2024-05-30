@@ -12,6 +12,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.utils import timezone
+from datetime import timedelta
+from django.http import JsonResponse
 
 def validate_password(password):
     """
@@ -165,3 +168,25 @@ def get_patient_par_medecin(request, idmedId):
             return JsonResponse({"error": "Une erreur inattendue s'est produite."}, status=500)
     else:
         return JsonResponse({"error": "Méthode non autorisée"}, status=405)
+    # views.py
+
+
+def get_upcoming_appointments(request, patient_id):
+    try:
+        now = timezone.now()
+        upcoming = now + timedelta(hours=24)
+        appointments = consultations.objects.filter(idpat_id=patient_id, date_consultation__range=(now, upcoming))
+
+        appointments_data = [
+            {
+                "id": appointment.idconsultations,
+                "date": appointment.date_consultation,
+                "time": appointment.heure_consultation,
+                "description": appointment.description,
+            }
+            for appointment in appointments
+        ]
+
+        return JsonResponse(appointments_data, safe=False)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

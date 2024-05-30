@@ -75,10 +75,12 @@ const FormPatient = () => {
         console.error("L'inscription a échoué.");
       }
     } catch (error) {
+      console.error("Erreur lors de l'inscription du patient par un médecin :", error);
       if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error); // Affichage du message d'erreur provenant de l'API
+        const errorMessage = error.response.data.error;
+        alert(errorMessage); // Afficher l'erreur dans une alerte
       } else {
-        console.error("Erreur lors de l'inscription :", error);
+        alert("Une erreur inconnue s'est produite.");
       }
     } finally {
       setLoading(false);

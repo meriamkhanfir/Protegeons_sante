@@ -9,6 +9,29 @@ from .models import DoctorChangeRequest, consultations, patient, users  # Import
 from .models import medecin
 
 
+import re
+import json
+
+def validate_password(password):
+    """
+    Valide si le mot de passe respecte les critères suivants :
+    - Au moins 8 caractères
+    - Contient au moins un caractère spécial
+    - Contient au moins une lettre majuscule
+    """
+    errors = []
+    
+    if len(password) < 8:
+        errors.append("Le mot de passe doit contenir au moins 8 caractères.")
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        errors.append("Le mot de passe doit contenir au moins un caractère spécial.")
+    if not re.search(r'[A-Z]', password):
+        errors.append("Le mot de passe doit contenir au moins une lettre majuscule.")
+    
+    if errors:
+        return json.dumps({"success": False, "errors": errors})
+    
+    return json.dumps({"success": True})
 
 @csrf_exempt
 def register_medecin(request):
@@ -34,6 +57,13 @@ def register_medecin(request):
             # Vérifiez si les mots de passe correspondent
             if password != confirm_password:
                 return JsonResponse({"error": "Les mots de passe ne correspondent pas."}, status=400)
+            
+            # Vérifiez si les mots de passe correspondent
+            password_validation_result = validate_password(password)
+            password_validation_data = json.loads(password_validation_result)
+            if not password_validation_data["success"]:
+                return JsonResponse({"error": "Le mot de passe doit contenir au moins 8 caractères,  un caractère spécial et une lettre majuscule", "details": password_validation_data["errors"]}, status=400)
+
 
             # Vérifiez si l'email existe déjà dans la base de données
             if medecin.objects.filter(email=email).exists():
@@ -153,5 +183,8 @@ def register_patient_by_medecin(request, idmedId):
            # send_email_to_patient(email, password,medecin_obj.email,medecin_obj.password),
             return JsonResponse({'redirect': '/home_medecin', "success": True})
 
+        except medecin.DoesNotExist:
+            return JsonResponse({"error": "Le médecin spécifié n'existe pas."}, status=400)
+
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
+            return JsonResponse({"error": "Une erreur s'est produite lors de l'enregistrement du patient. Veuillez réessayer ultérieurement.", "details": str(e)}, status=500)
